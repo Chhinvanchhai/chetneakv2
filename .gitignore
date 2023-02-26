@@ -43,4 +43,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-/lib/firebase_options
+
+#key sescret file
+/lib/firebase_options.dart
+/ios/Runner/GoogleService-Info.plist
