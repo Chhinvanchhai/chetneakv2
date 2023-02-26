@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "630628051796",
+    "firebase_url": "https://nearyou-49d62.firebaseio.com",
+    "project_id": "nearyou-49d62",
+    "storage_bucket": "nearyou-49d62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630628051796:android:c18d760aa51a33449676c1",
+        "android_client_info": {
+          "package_name": "com.example.chetneak_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630628051796-p3jrai28qgr2tfcuapdc81hpmvdg9b79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFgOV1tpURO7jdJWP7rTQAaPfETsTgmr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630628051796-p3jrai28qgr2tfcuapdc81hpmvdg9b79.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630628051796-njfctis9u3ako4euk7i4v1tck99luvss.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "nearyou"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630628051796:android:f03eea46783e7de19676c1",
+        "android_client_info": {
+          "package_name": "com.example.nearyou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630628051796-p3jrai28qgr2tfcuapdc81hpmvdg9b79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFgOV1tpURO7jdJWP7rTQAaPfETsTgmr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630628051796-p3jrai28qgr2tfcuapdc81hpmvdg9b79.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630628051796-njfctis9u3ako4euk7i4v1tck99luvss.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "nearyou"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
