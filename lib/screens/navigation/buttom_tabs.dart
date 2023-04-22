@@ -1,4 +1,5 @@
 import 'package:chetneak_v2/constants.dart';
+import 'package:chetneak_v2/screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:chetneak_v2/screens/home_screen/HomeScreen.dart';
 import 'package:chetneak_v2/screens/hotel_booking/hotel_home_screen.dart';
@@ -17,9 +18,9 @@ class _BottomTabsState extends State<BottomTabs> {
     // HomeScreen(),
     HomeScreens(),
     ChatsScreen(),
-    // HotelHomeScreen(),
-    Scaffold(),
-    Profile(),
+    HotelHomeScreen(),
+    // Scaffold(),
+    SettingsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
