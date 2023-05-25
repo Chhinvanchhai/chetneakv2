@@ -4,8 +4,8 @@ import 'package:chetneak_v2/screens/widget/h1.dart';
 import 'package:chetneak_v2/screens/widget/h3.dart';
 import 'package:chetneak_v2/screens/widget/title.dart';
 import 'package:chetneak_v2/themes/app_theme.dart';
-// import 'category_list_view.dart';
-// import '../design_course/course_info_screen.dart';
+import 'category_list_view.dart';
+import '../design_course/course_info_screen.dart';
 import '../design_course/popular_course_list_view.dart';
 import 'categories.dart';
 
@@ -139,9 +139,9 @@ class _HomeScreensState extends State<HomeScreens> {
 
   Widget getPopularPalceUI() {
     return Padding(
-      padding: EdgeInsets.only(top: 8.0, left: 18, right: 16),
+      padding: const EdgeInsets.only(top: 8.0, left: 18, right: 16),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        TitleC1(name: 'popular_place'),
+        const TitleC1(name: 'popular_place'),
         Expanded(
           child: PopularCourseListView(
               callBack: (holtelData) =>

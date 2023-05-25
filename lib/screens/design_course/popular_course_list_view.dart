@@ -38,14 +38,12 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(top: 8),
+        padding: const EdgeInsets.only(top: 1),
         child: Obx(() => GridView(
               padding: const EdgeInsets.all(3),
+              physics: NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16.0,
-                crossAxisSpacing: 16.0,
-                childAspectRatio: 0.8,
+                crossAxisCount: 1,
               ),
               children: List<Widget>.generate(
                 resortController.resortList.length,
@@ -90,98 +88,75 @@ class CategoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: animationController,
-      builder: (BuildContext context, _) {
-        return FadeTransition(
-          opacity: animation,
-          child: Transform(
-            transform: Matrix4.translationValues(
-                0.0, 40 * (1.0 - animation.value), 0.0),
-            child: Container(
-              height: 80,
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  borderRadius: const BorderRadius.all(Radius.circular(16.0)),
-                  child: Container(
-                    color: Colors.red,
-                    height: 80,
-                    child: Stack(
-                      alignment: AlignmentDirectional.topCenter,
-                      children: <Widget>[
-                        Column(
+    return Container(
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+          child: Container(
+            height: 80,
+            child: Stack(
+              alignment: AlignmentDirectional.topCenter,
+              children: <Widget>[
+                Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: Ink(
+                        decoration: const BoxDecoration(
+                          color: Color(0xFFF8FAFB),
+                          borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                          // border: Border.all(
+                          //     color: DesignCourseAppTheme.notWhite),
+                        ),
+                        child: Column(
                           children: <Widget>[
                             Expanded(
-                              child: Ink(
-                                decoration: const BoxDecoration(
-                                  color: Color(0xFFF8FAFB),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(16.0)),
-                                  // border: Border.all(
-                                  //     color: DesignCourseAppTheme.notWhite),
-                                ),
-                                child: Column(
-                                  children: <Widget>[
-                                    Expanded(
-                                      child: Column(
-                                        children: <Widget>[
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 2, left: 16, right: 16),
-                                            child: Text(
-                                              hotelData.titleTxt,
-                                              textAlign: TextAlign.left,
-                                              style: const TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                                letterSpacing: 0.27,
-                                                color: DesignCourseAppTheme
-                                                    .darkerText,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                              child: Column(
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 2, left: 16, right: 16),
+                                    child: Text(
+                                      hotelData.titleTxt,
+                                      textAlign: TextAlign.left,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        letterSpacing: 0.27,
+                                        color: DesignCourseAppTheme.darkerText,
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, right: 16, left: 16),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(16.0)),
-                              boxShadow: <BoxShadow>[
-                                BoxShadow(
-                                    color: DesignCourseAppTheme.grey
-                                        .withOpacity(0.2),
-                                    blurRadius: 6.0),
-                              ],
-                            ),
-                            child: ClipRRect(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(16.0)),
-                              child: AspectRatio(
-                                  aspectRatio: 1.28,
-                                  child: Image.network(hotelData.imagePath)),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, right: 16, left: 16),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(16.0)),
+                    ),
+                    child: ClipRRect(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(16.0)),
+                      child: AspectRatio(
+                          aspectRatio: 1.28,
+                          child: Image.network(hotelData.imagePath)),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
