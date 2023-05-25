@@ -1,5 +1,6 @@
 import 'package:chetneak_v2/screens/Learn.dart';
 import 'package:chetneak_v2/constants.dart';
+import 'package:chetneak_v2/screens/home_screen/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:chetneak_v2/screens/hotel_booking/hotel_home_screen.dart';
 import 'package:chetneak_v2/screens/profile.dart';
@@ -13,8 +14,8 @@ class BottomTabs extends StatefulWidget {
 class _BottomTabsState extends State<BottomTabs> {
   int _selectedIndex = 1;
   final List<Widget> _screens = [
-    // HomeScreen(),
-    LearnScreen(),
+    HomeScreens(),
+    // LearnScreen(),
     ChatsScreen(),
     HotelHomeScreen(),
     Profile(),

@@ -34,7 +34,7 @@ class NotifcationController extends GetxController {
         NotificationDetails(
           android: AndroidNotificationDetails(
             channel.id,
-            channel.name,
+            // channel.name,
             dsc,
             playSound: true,
             icon: '@mipmap/ic_launcher',
@@ -57,7 +57,7 @@ class NotifcationController extends GetxController {
             NotificationDetails(
               android: AndroidNotificationDetails(
                 channel.id,
-                channel.name,
+                // channel.name,
                 'incoming',
                 playSound: true,
                 icon: android.smallIcon,

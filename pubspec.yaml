@@ -41,7 +41,7 @@ dependencies:
   firebase_auth: ^4.2.8
   get_storage: ^2.0.3
   firebase_messaging: ^14.2.4
-  flutter_local_notifications: ^8.2.0
+  flutter_local_notifications: ^14.0.0+2
   font_awesome_flutter: ^10.4.0
   google_maps_flutter: ^2.2.3
   geolocator: ^9.0.2

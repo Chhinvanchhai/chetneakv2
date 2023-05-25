@@ -17,7 +17,7 @@ import 'translation/traslations.dart';
 final AndroidNotificationChannel channel = AndroidNotificationChannel(
     'high_importance_channel', // id
     'High Importance Notifications', // title
-    'for send message',
+    description: 'for send message',
     importance: Importance.high,
     playSound: true);
 
@@ -78,7 +78,7 @@ class _MyAppState extends State<MyApp> {
             NotificationDetails(
               android: AndroidNotificationDetails(
                 channel.id,
-                channel.name,
+                // channel.name,
                 'desciption',
                 color: Colors.blue,
                 playSound: true,

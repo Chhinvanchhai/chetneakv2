@@ -57,6 +57,6 @@ class AuthMiddleware extends GetMiddleware {
   }
 
   RouteSettings? redirect(String? route) {
-    return !checkUser() ? RouteSettings(name: "/") : null;
+    return !checkUser() ? const RouteSettings(name: "/") : null;
   }
 }

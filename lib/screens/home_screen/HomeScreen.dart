@@ -4,8 +4,8 @@ import 'package:chetneak_v2/screens/widget/h1.dart';
 import 'package:chetneak_v2/screens/widget/h3.dart';
 import 'package:chetneak_v2/screens/widget/title.dart';
 import 'package:chetneak_v2/themes/app_theme.dart';
-import 'category_list_view.dart';
-import '../design_course/course_info_screen.dart';
+// import 'category_list_view.dart';
+// import '../design_course/course_info_screen.dart';
 import '../design_course/popular_course_list_view.dart';
 import 'categories.dart';
 
