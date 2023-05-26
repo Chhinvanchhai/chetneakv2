@@ -52,7 +52,8 @@ class _BottomTabsState extends State<BottomTabs> {
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.messenger), label: "Chats"),
         BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
-        BottomNavigationBarItem(icon: Icon(Icons.call), label: "Calls"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.holiday_village), label: "Resorts"),
         BottomNavigationBarItem(
           icon: CircleAvatar(
             radius: 14,

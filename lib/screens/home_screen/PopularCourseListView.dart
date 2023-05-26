@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:chetneak_v2/models/hotel_list_data.dart';
 
 import '../../controllers/resort_controller.dart';
-import 'design_course_app_theme.dart';
-import 'models/category.dart';
+import '../design_course/design_course_app_theme.dart';
+import '../design_course/models/category.dart';
 
 class PopularCourseListView extends StatefulWidget {
   const PopularCourseListView({required this.callBack, Key? key})
@@ -16,8 +16,7 @@ class PopularCourseListView extends StatefulWidget {
   State<PopularCourseListView> createState() => _PopularCourseListViewState();
 }
 
-class _PopularCourseListViewState extends State<PopularCourseListView>
-    with TickerProviderStateMixin {
+class _PopularCourseListViewState extends State<PopularCourseListView> {
   late final AnimationController animationController;
   final ResortController resortController = Get.put(ResortController());
 
@@ -25,50 +24,35 @@ class _PopularCourseListViewState extends State<PopularCourseListView>
   void initState() {
     super.initState();
     resortController.getResortList(resortController.distances);
-    animationController = AnimationController(
-        duration: const Duration(milliseconds: 2000), vsync: this);
+    print("==================datalist=================");
+    print(resortController.resortList);
+    print("================== end list =================");
   }
 
   @override
   void dispose() {
-    animationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
         padding: const EdgeInsets.only(top: 1),
-        child: Obx(() => GridView(
-              padding: const EdgeInsets.all(3),
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-              ),
-              children: List<Widget>.generate(
-                resortController.resortList.length,
-                (int index) {
-                  final int count = resortController.resortList.length;
-                  final Animation<double> animation =
-                      Tween<double>(begin: 0.0, end: 1.0).animate(
-                    CurvedAnimation(
-                      parent: animationController,
-                      curve: Interval((1 / count) * index, 1.0,
-                          curve: Curves.fastOutSlowIn),
-                    ),
-                  );
-                  animationController.forward();
-                  return CategoryView(
-                    callback: () {
-                      widget.callBack(resortController.resortList[index]);
-                    },
-                    hotelData: resortController.resortList[index],
-                    animation: animation,
-                    animationController: animationController,
-                  );
-                },
-              ),
-            )));
+        child: Obx(() => ListView.builder(
+            itemCount: resortController.resortList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 300,
+                margin: EdgeInsets.all(12.0),
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.6),
+                    offset: const Offset(2, 2),
+                    spreadRadius: 3,
+                  )
+                ]),
+              );
+            })));
   }
 }
 

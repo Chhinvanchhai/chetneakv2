@@ -43,7 +43,7 @@ class ResortController extends GetxController {
 
   getResortList(dist) async {
     // var position = await helper.determinePosition();
-    print("dist============${dist}");
+    print("get resort list============${dist}");
     var position = {'latitude': 11.5565428, 'longitude': 104.8804897};
     double? lat = position['latitude'];
     double? lon = position['longitude'];
@@ -54,7 +54,7 @@ class ResortController extends GetxController {
     double greaterLon = position['longitude']! + (lon * distance);
     GeoPoint lesserGeopoint = GeoPoint(lowerLat, lowerLon);
     GeoPoint greaterGeopoint = GeoPoint(greaterLat, greaterLon);
-    resortList = [].obs;
+    resortList.clear();
     FirebaseFirestore.instance
         .collection('resorts')
         .where("position", isGreaterThan: lesserGeopoint)
@@ -81,6 +81,7 @@ class ResortController extends GetxController {
             dist: distance,
             rating: 4.4,
             location: doc['position']));
+        update();
       });
       totalHotel.value = resortList.length;
     });

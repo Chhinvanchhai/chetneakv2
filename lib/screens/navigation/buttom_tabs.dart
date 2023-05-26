@@ -53,15 +53,11 @@ class _BottomTabsState extends State<BottomTabs> {
       },
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.people), label: "People"),
-        BottomNavigationBarItem(icon: Icon(Icons.call), label: "Calls"),
+        BottomNavigationBarItem(icon: Icon(Icons.message), label: "Chat"),
         BottomNavigationBarItem(
-          icon: CircleAvatar(
-            radius: 14,
-            backgroundImage: AssetImage("assets/images/user_2.png"),
-          ),
-          label: "Profile",
-        ),
+            icon: Icon(Icons.holiday_village), label: "Reports"),
+        BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance), label: "Profile"),
       ],
     );
   }

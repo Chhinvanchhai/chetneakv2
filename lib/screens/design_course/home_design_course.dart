@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../home_screen/category_list_view.dart';
 import 'course_info_screen.dart';
 import 'design_course_app_theme.dart';
-import 'popular_course_list_view.dart';
+import '../home_screen/PopularCourseListView.dart';
 
 class DesignCourseHomeScreen extends StatefulWidget {
   const DesignCourseHomeScreen({Key? key}) : super(key: key);
@@ -33,7 +33,7 @@ class _DesignCourseHomeScreenState extends State<DesignCourseHomeScreen> {
                   children: <Widget>[
                     getSearchBarUI(),
                     getCategoryUI(),
-                    Flexible(
+                    Expanded(
                       child: getPopularCourseUI(),
                     ),
                   ],
