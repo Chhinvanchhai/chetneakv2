@@ -15,9 +15,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
-        foregroundColor: Colors.green,
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.red,
       ),
       body: SafeArea(
         child: SingleChildScrollView(

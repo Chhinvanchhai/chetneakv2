@@ -20,7 +20,10 @@ class _HomeScreensState extends State<HomeScreens> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppTheme.nearlyWhite,
+      color: Theme.of(context).primaryColor,
+      textStyle: TextStyle(
+        color: Colors.white,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -106,18 +109,18 @@ class _HomeScreensState extends State<HomeScreens> {
                 Text(
                   'Phnom Penh',
                   style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      letterSpacing: 0.2,
-                      fontSize: 14.0,
-                      color: AppTheme.grey),
+                    fontWeight: FontWeight.w300,
+                    letterSpacing: 0.2,
+                    fontSize: 14.0,
+                  ),
                 ),
                 Text(
                   'Chhin Vanchhai',
                   style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0.2,
-                      fontSize: 20.0,
-                      color: AppTheme.darkText),
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 0.2,
+                    fontSize: 20.0,
+                  ),
                 )
               ],
             ),

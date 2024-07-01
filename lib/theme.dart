@@ -14,8 +14,9 @@ ThemeData lightThemeData(BuildContext context) {
     iconTheme: IconThemeData(color: kContentColorLightTheme),
     textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
         .apply(bodyColor: kContentColorLightTheme),
-    colorScheme: ColorScheme.light(
+    colorScheme: const ColorScheme.light(
       primary: kPrimaryColor,
+      onPrimary: Colors.black,
       secondary: kSecondaryColor,
       error: kErrorColor,
     ),
@@ -33,14 +34,15 @@ ThemeData darkThemeData(BuildContext context) {
   // Bydefault flutter provie us light and dark theme
   // we just modify it as our need
   return ThemeData.dark().copyWith(
-    primaryColor: kPrimaryColor,
+    primaryColor: kContentColorLightTheme,
     scaffoldBackgroundColor: kContentColorLightTheme,
     appBarTheme: appBarTheme,
     iconTheme: IconThemeData(color: kContentColorDarkTheme),
     textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
         .apply(bodyColor: kContentColorDarkTheme),
     colorScheme: ColorScheme.dark().copyWith(
-      primary: kPrimaryColor,
+      primary: bgDarkTheme,
+      onPrimary: Colors.white,
       secondary: kSecondaryColor,
       error: kErrorColor,
     ),

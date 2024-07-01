@@ -28,9 +28,11 @@ class ProfileController extends GetxController {
 
   Future<void> login(email, password) async {
     try {
+      print("Login------------->");
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
 
+      print(userCredential);
       final box = GetStorage();
       Map userMap = {
         "displayName": userCredential.user!.displayName,
@@ -40,7 +42,7 @@ class ProfileController extends GetxController {
         "uid": userCredential.user!.uid,
       };
       box.write('user', userMap);
-      Get.toNamed('/home');
+      Get.offAll('/home');
 
       // print(userCredential);
     } on FirebaseAuthException catch (e) {

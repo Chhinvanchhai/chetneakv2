@@ -47,11 +47,11 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    // resortController.getResortList();
-    print("${resortController.distances.toString()}");
-    return Material(
-      child: Theme(
-        data: HotelAppTheme.buildLightTheme(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Resorts"),
+      ),
+      body: Material(
         child: Stack(
           children: <Widget>[
             InkWell(
@@ -64,7 +64,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
               },
               child: Column(
                 children: <Widget>[
-                  getAppBarUI(),
+                  // getAppBarUI(),
                   Expanded(
                     child: NestedScrollView(
                       controller: _scrollController,
@@ -92,7 +92,6 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                         ];
                       },
                       body: Container(
-                        color: HotelAppTheme.buildLightTheme().backgroundColor,
                         child: Obx(() => ListView.builder(
                               itemCount: resortController.resortList.length,
                               controller: resortController.scrollController,
@@ -330,19 +329,10 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
           right: 0,
           child: Container(
             height: 24,
-            decoration: BoxDecoration(
-              color: HotelAppTheme.buildLightTheme().backgroundColor,
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    offset: const Offset(0, -2),
-                    blurRadius: 8.0),
-              ],
-            ),
+            decoration: BoxDecoration(),
           ),
         ),
         Container(
-          color: HotelAppTheme.buildLightTheme().backgroundColor,
           child: Padding(
             padding:
                 const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
@@ -442,7 +432,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
   Widget getAppBarUI() {
     return Container(
       decoration: BoxDecoration(
-        color: HotelAppTheme.buildLightTheme().backgroundColor,
+        color: Theme.of(context).primaryColor,
         boxShadow: <BoxShadow>[
           BoxShadow(
               color: Colors.grey.withOpacity(0.2),
@@ -454,6 +444,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
         padding: EdgeInsets.only(
             top: MediaQuery.of(context).padding.top, left: 8, right: 8),
         child: Material(
+          color: Theme.of(context).primaryColor,
           child: Row(
             children: <Widget>[
               Container(
