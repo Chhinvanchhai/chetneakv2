@@ -1,4 +1,5 @@
 import 'package:chetneak_v2/models/ChatMessage.dart';
+import 'package:chetneak_v2/models/User.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ class ChatService extends GetxController {
   RxList<ChatMessage> demeChatMessages = <ChatMessage>[].obs;
   List<DocumentSnapshot> documentList = [];
   String? storId;
+  var users = <Users>[].obs;
 
   // Function to create a new direct chat
   Future<void> createNewChat(String otherUserId) async {
@@ -196,5 +198,41 @@ class ChatService extends GetxController {
         print('Group chat ID: ${doc.id}');
       }
     });
+  }
+
+  // Function to fetch personal messages for a given chat ID
+  void getPersonalMessages(String chatId) {
+    storId = chatId;
+
+    Map<String, dynamic> profile = _box.read('user') as Map<String, dynamic>;
+    String userEmail = profile['email'];
+
+    _firestore
+        .collection('chats')
+        .doc(chatId)
+        .collection('messages')
+        .orderBy('timestamp', descending: true)
+        .limit(20)
+        .snapshots()
+        .listen((QuerySnapshot querySnapshot) {
+      List<ChatMessage> allMessages = [];
+
+      for (var doc in querySnapshot.docs) {
+        Map<String, dynamic> message = doc.data() as Map<String, dynamic>;
+        bool isSender = userEmail == message['senderId'];
+
+        allMessages.add(ChatMessage(
+          text: message['content'],
+          messageType: ChatMessageType.text,
+          messageStatus: MessageStatus.viewed,
+          isSender: isSender,
+        ));
+      }
+
+      documentList = querySnapshot.docs;
+      demeChatMessages.value = allMessages;
+    });
+
+    update();
   }
 }
