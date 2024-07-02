@@ -5,12 +5,13 @@ import 'package:get/get.dart';
 import 'package:chetneak_v2/controllers/user_controller.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../constants.dart';
+import '../chat_service.dart';
 // import 'package:firebase_storage/firebase_storage.dart';
 
 class ChatInputField extends StatefulWidget {
-  final String? messageId;
-  ChatInputField({
-    this.messageId,
+  final String chatId;
+  const ChatInputField({
+    required this.chatId,
     Key? key,
   }) : super(key: key);
 
@@ -26,6 +27,7 @@ class _ChatInputFieldState extends State<ChatInputField> {
   var sms;
   UserController userController = Get.find();
   final TextEditingController _controller = new TextEditingController();
+  final ChatServiceController controller = Get.put(ChatServiceController());
 
   void handleMessage(text) {
     setState(() {
@@ -39,7 +41,10 @@ class _ChatInputFieldState extends State<ChatInputField> {
   }
 
   void sendMessage() {
-    userController.sendMessage(widget.messageId, sms);
+    controller.sendMessage(
+      sms,
+      widget.chatId,
+    );
     setState(() {
       sms = '';
     });
@@ -101,7 +106,7 @@ class _ChatInputFieldState extends State<ChatInputField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: kDefaultPadding,
         vertical: kDefaultPadding / 2,
       ),

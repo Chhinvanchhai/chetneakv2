@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:chetneak_v2/screens/home_screen/HomeScreen.dart';
 import 'package:chetneak_v2/screens/hotel_booking/hotel_home_screen.dart';
 import 'package:chetneak_v2/screens/profile.dart';
+import 'package:get/get.dart';
 import '../chats/chats_screen.dart';
-import '../messages/message_screen.dart';
 
 class BottomTabs extends StatefulWidget {
   @override
@@ -17,7 +17,7 @@ class _BottomTabsState extends State<BottomTabs> {
   final List<Widget> _screens = [
     // HomeScreen(),
     HomeScreens(),
-    ChatsScreen(),
+    ListChatScreen(),
     HotelHomeScreen(),
     // Scaffold(),
     SettingsScreen(),
@@ -31,7 +31,9 @@ class _BottomTabsState extends State<BottomTabs> {
         children: _screens,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed('/new-chat');
+        },
         backgroundColor: kPrimaryColor,
         child: Icon(
           Icons.person_add_alt_1,

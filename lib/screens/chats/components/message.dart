@@ -1,5 +1,6 @@
 import 'package:chetneak_v2/models/ChatMessage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import '../../../constants.dart';
 import 'audio_message.dart';
@@ -25,7 +26,7 @@ class Message extends StatelessWidget {
         case ChatMessageType.video:
           return VideoMessage();
         default:
-          return SizedBox();
+          return const SizedBox();
       }
     }
 
@@ -36,7 +37,7 @@ class Message extends StatelessWidget {
             message.isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           if (!message.isSender) ...[
-            CircleAvatar(
+            const CircleAvatar(
               radius: 12,
               backgroundImage: AssetImage("assets/images/user_2.png"),
             ),
@@ -61,7 +62,7 @@ class MessageStatusDot extends StatelessWidget {
         case MessageStatus.not_sent:
           return kErrorColor;
         case MessageStatus.not_view:
-          return Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.1);
+          return Theme.of(context).textTheme.bodySmall!.color!.withOpacity(0.1);
         case MessageStatus.viewed:
           return kPrimaryColor;
         default:
@@ -80,7 +81,7 @@ class MessageStatusDot extends StatelessWidget {
       child: Icon(
         status == MessageStatus.not_sent ? Icons.close : Icons.done,
         size: 8,
-        color: Theme.of(context).scaffoldBackgroundColor,
+        color: Theme.of(context).primaryColor,
       ),
     );
   }

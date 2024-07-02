@@ -1,3 +1,5 @@
+import 'package:chetneak_v2/screens/chats/create_group.dart';
+import 'package:chetneak_v2/screens/chats/new_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -24,7 +26,7 @@ List<GetPage> routes = [
       name: '/home', page: () => BottomTabs(), middlewares: [AuthMiddleware()]),
   GetPage(
       name: '/message',
-      page: () => ChatsScreen(),
+      page: () => ListChatScreen(),
       middlewares: [AuthMiddleware()]),
   GetPage(
       name: '/settings',
@@ -40,6 +42,14 @@ List<GetPage> routes = [
       middlewares: [AuthMiddleware()]),
   GetPage(
       name: '/maps', page: () => HotelMaps(), middlewares: [AuthMiddleware()]),
+  GetPage(
+      name: '/new-chat',
+      page: () => CreateChatScreen(),
+      middlewares: [AuthMiddleware()]),
+  GetPage(
+      name: '/new-group',
+      page: () => CreateGroupScreen(),
+      middlewares: [AuthMiddleware()]),
   // GetPage with custom transitions and bindings
 ];
 

@@ -16,8 +16,9 @@ ThemeData lightThemeData(BuildContext context) {
         .apply(bodyColor: kContentColorLightTheme),
     colorScheme: const ColorScheme.light(
       primary: kPrimaryColor,
-      onPrimary: Colors.black,
+      onPrimary: Colors.white,
       secondary: kSecondaryColor,
+      onSecondary: Colors.black,
       error: kErrorColor,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -42,9 +43,10 @@ ThemeData darkThemeData(BuildContext context) {
         .apply(bodyColor: kContentColorDarkTheme),
     colorScheme: ColorScheme.dark().copyWith(
       primary: bgDarkTheme,
-      onPrimary: Colors.white,
       secondary: kSecondaryColor,
       error: kErrorColor,
+      onPrimary: Colors.black,
+      onSecondary: Colors.white,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: kContentColorLightTheme,

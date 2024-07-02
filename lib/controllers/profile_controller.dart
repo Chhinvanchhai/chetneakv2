@@ -42,7 +42,7 @@ class ProfileController extends GetxController {
         "uid": userCredential.user!.uid,
       };
       box.write('user', userMap);
-      Get.offAll('/home');
+      Get.offAllNamed('/home');
 
       // print(userCredential);
     } on FirebaseAuthException catch (e) {

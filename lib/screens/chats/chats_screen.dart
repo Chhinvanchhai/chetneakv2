@@ -1,52 +1,130 @@
-// import 'package:get/get.dart';
-
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:chetneak_v2/controllers/notification_controller.dart';
-// import 'package:chetneak_v2/controllers/user_controller.dart';
-import 'components/body.dart';
 
-class ChatsScreen extends StatefulWidget {
+import 'chat_screen.dart';
+
+class ListChatScreen extends StatefulWidget {
   @override
-  _ChatsScreenState createState() => _ChatsScreenState();
+  _ListChatScreenState createState() => _ListChatScreenState();
 }
 
-class _ChatsScreenState extends State<ChatsScreen> {
-  // UserController user = Get.put(UserController());
-  // final NotifcationController notifController = Get.find();
+class _ListChatScreenState extends State<ListChatScreen> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final ScrollController _scrollController = ScrollController();
+  final int _limitIncrement = 20;
+  int _limit = 20;
+  bool _isLoadingMore = false;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    // notifController.listenNotication();
+    _scrollController.addListener(_scrollListener);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollListener() {
+    if (_scrollController.position.atEdge) {
+      if (_scrollController.position.pixels != 0 && !_isLoadingMore) {
+        setState(() {
+          _isLoadingMore = true;
+          _limit += _limitIncrement;
+        });
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
-      body: Body(),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   backgroundColor: kPrimaryColor,
-      //   child: Icon(
-      //     Icons.person_add_alt_1,
-      //     color: Colors.white,
-      //   ),
-      // ),
+      appBar: AppBar(
+        title: Text('Chats'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () {
+                Get.toNamed('/new-group');
+              },
+              child: Icon(Icons.add),
+            ),
+          )
+        ],
+      ),
+      body: StreamBuilder(
+        stream: _firestore
+            .collection('chats')
+            .where('members', arrayContains: _auth.currentUser!.uid)
+            .limit(_limit)
+            .snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> chatSnapshot) {
+          if (chatSnapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          var chatDocs = chatSnapshot.data!.docs;
+
+          return ListView.builder(
+            controller: _scrollController,
+            itemCount: chatDocs.length + (_isLoadingMore ? 1 : 0),
+            itemBuilder: (context, index) {
+              if (index == chatDocs.length) {
+                return Center(child: CircularProgressIndicator());
+              }
+
+              var chat = chatDocs[index];
+              var isGroup = chat['isGroup'] as bool;
+              var chatId = chat.id;
+
+              return ListTile(
+                leading: CircleAvatar(
+                  child: Icon(isGroup ? Icons.group : Icons.person),
+                ),
+                title: FutureBuilder<DocumentSnapshot>(
+                  future: _getChatTitle(chat),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Text('Loading...');
+                    }
+
+                    if (!snapshot.hasData) {
+                      return Text('Unknown');
+                    }
+
+                    var data = snapshot.data!.data() as Map<String, dynamic>;
+                    var title = data['name'] ?? 'Chat';
+                    return Text(title);
+                  },
+                ),
+                subtitle: Text(isGroup ? 'Group Chat' : 'Personal Chat'),
+                onTap: () {
+                  Get.to(ChatScreen(chatId: chatId, isGroup: isGroup));
+                },
+              );
+            },
+          );
+        },
+      ),
     );
   }
 
-  AppBar buildAppBar() {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: Text("Chats"),
-      actions: [
-        IconButton(
-          icon: Icon(Icons.search),
-          onPressed: () {},
-        ),
-      ],
-    );
+  Future<DocumentSnapshot> _getChatTitle(DocumentSnapshot chat) async {
+    var isGroup = chat['isGroup'] as bool;
+    var currentUser = _auth.currentUser;
+
+    if (isGroup) {
+      return _firestore.collection('groups').doc(chat.id).get();
+    } else {
+      var members = List<String>.from(chat['members']);
+      var otherUserId = members.firstWhere((id) => id != currentUser!.uid);
+      return _firestore.collection('users').doc(otherUserId).get();
+    }
   }
 }
