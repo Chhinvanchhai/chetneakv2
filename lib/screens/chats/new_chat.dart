@@ -45,7 +45,7 @@ class CreateChatScreen extends StatelessWidget {
                 subtitle: Text(user['email']),
                 onTap: () {
                   // Create a new chat with the selected user
-                  Get.find<ChatService>().createNewChat(user.id).then((_) {
+                  chatService.createNewChat(user.id).then((_) {
                     Get.back();
                     Get.snackbar('Success', 'New chat created!');
                   });

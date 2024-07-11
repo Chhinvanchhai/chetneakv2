@@ -50,6 +50,18 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     return Scaffold(
       appBar: AppBar(
         title: Text("Resorts"),
+        actions: [
+          InkWell(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(32.0),
+            ),
+            onTap: () => Get.toNamed('/maps'),
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(FontAwesomeIcons.locationDot),
+            ),
+          ),
+        ],
       ),
       body: Material(
         child: Stack(

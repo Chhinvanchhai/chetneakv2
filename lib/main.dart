@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:chetneak_v2/screens/home_screen/home_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'controllers/profile_controller.dart';
 import 'firebase_options.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -12,6 +14,7 @@ import 'package:chetneak_v2/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'translation/traslations.dart';
+import 'package:get/get.dart';
 
 // ignore: prefer_const_constructors
 final AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -50,6 +53,8 @@ Future<void> main() async {
     NotifcationController notif = NotifcationController();
     notif.asKUserPersionForNotification();
   }
+  Get.put(ProfileController());
+
   runApp(MyApp());
 }
 
@@ -64,9 +69,17 @@ class _MyAppState extends State<MyApp> {
   String local = 'en';
   String country = 'US';
   final storage = GetStorage();
+  HomeController homeCont = Get.put(HomeController());
+
+  void onStartProject() {
+    var getUser = storage.read("user");
+    print("user-------------------:${getUser}");
+  }
+
   @override
   void initState() {
     super.initState();
+    onStartProject();
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;

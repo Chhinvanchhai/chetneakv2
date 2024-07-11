@@ -25,12 +25,15 @@ class ChatService extends GetxController {
     QuerySnapshot existingChat = await _firestore
         .collection('chats')
         .where('members', arrayContains: currentUserId)
+        .where('isGroup', isEqualTo: false)
         .get();
 
     for (var doc in existingChat.docs) {
       List<dynamic> members = doc['members'];
+      print("memerb leng==============${members.length}");
+      print("memerb leng==============${doc['isGroup']}");
       if (members.contains(otherUserId)) {
-        print('Chat already exists with ID: ${doc.id}');
+        print('**********Chat already exists with ID: ${doc.id}');
         return;
       }
     }
@@ -43,7 +46,7 @@ class ChatService extends GetxController {
       'lastUpdated': FieldValue.serverTimestamp()
     });
 
-    print('New chat created with ID: ${newChatRef.id}');
+    print('=============New chat created with ID: ${newChatRef.id}');
   }
 
   // Function to create a new group chat

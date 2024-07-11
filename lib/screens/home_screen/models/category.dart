@@ -1,5 +1,5 @@
-class Category {
-  Category({
+class CategoryModel {
+  CategoryModel({
     this.title = '',
     this.imagePath = '',
     this.lessonCount = 0,
@@ -13,29 +13,29 @@ class Category {
   double rating;
   String imagePath;
 
-  static List<Category> categoryList = <Category>[
-    Category(
+  static List<CategoryModel> categoryList = <CategoryModel>[
+    CategoryModel(
       imagePath: 'assets/images/interFace1.png',
       title: 'User interface Design',
       lessonCount: 24,
       money: 25,
       rating: 4.3,
     ),
-    Category(
+    CategoryModel(
       imagePath: 'assets/images/interFace2.png',
       title: 'User interface Design',
       lessonCount: 22,
       money: 18,
       rating: 4.6,
     ),
-    Category(
+    CategoryModel(
       imagePath: 'assets/images/interFace1.png',
       title: 'User interface Design',
       lessonCount: 24,
       money: 25,
       rating: 4.3,
     ),
-    Category(
+    CategoryModel(
       imagePath: 'assets/images/interFace2.png',
       title: 'User interface Design',
       lessonCount: 22,
@@ -44,29 +44,29 @@ class Category {
     ),
   ];
 
-  static List<Category> popularCourseList = <Category>[
-    Category(
+  static List<CategoryModel> popularCourseList = <CategoryModel>[
+    CategoryModel(
       imagePath: 'assets/images/interFace3.png',
       title: 'App Design Course',
       lessonCount: 12,
       money: 25,
       rating: 4.8,
     ),
-    Category(
+    CategoryModel(
       imagePath: 'assets/images/interFace4.png',
       title: 'Web Design Course',
       lessonCount: 28,
       money: 208,
       rating: 4.9,
     ),
-    Category(
+    CategoryModel(
       imagePath: 'assets/images/interFace3.png',
       title: 'App Design Course',
       lessonCount: 12,
       money: 25,
       rating: 4.8,
     ),
-    Category(
+    CategoryModel(
       imagePath: 'assets/images/interFace4.png',
       title: 'Web Design Course',
       lessonCount: 28,

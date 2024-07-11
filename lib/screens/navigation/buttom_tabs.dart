@@ -1,4 +1,5 @@
 import 'package:chetneak_v2/constants.dart';
+import 'package:chetneak_v2/screens/home_screen/index.dart';
 import 'package:chetneak_v2/screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:chetneak_v2/screens/home_screen/HomeScreen.dart';
@@ -16,10 +17,11 @@ class _BottomTabsState extends State<BottomTabs> {
   int _selectedIndex = 0;
   final List<Widget> _screens = [
     // HomeScreen(),
-    HomeScreens(),
+    HomeScreen(),
     ListChatScreen(),
     HotelHomeScreen(),
     // Scaffold(),
+    ProfileScreen(),
     SettingsScreen(),
   ];
   @override
@@ -46,7 +48,7 @@ class _BottomTabsState extends State<BottomTabs> {
 
   BottomNavigationBar buildBottomNavigationBar() {
     return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
+      type: BottomNavigationBarType.shifting,
       currentIndex: _selectedIndex,
       onTap: (value) {
         setState(() {
@@ -54,12 +56,38 @@ class _BottomTabsState extends State<BottomTabs> {
         });
       },
       items: [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(icon: Icon(Icons.message), label: "Chat"),
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.home, color: Colors.grey),
+          activeIcon: Icon(Icons.home, color: Colors.black),
+          label: '',
+        ),
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.chat, color: Colors.grey),
+          activeIcon: Icon(Icons.chat, color: Colors.black),
+          label: '',
+        ),
         BottomNavigationBarItem(
-            icon: Icon(Icons.holiday_village), label: "Reports"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.account_balance), label: "Profile"),
+          icon: Container(
+            height: 40,
+            width: 40,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.black,
+            ),
+            child: Icon(Icons.hotel, color: Colors.white),
+          ),
+          label: '',
+        ),
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.favorite, color: Colors.grey),
+          activeIcon: Icon(Icons.favorite, color: Colors.black),
+          label: '',
+        ),
+        const BottomNavigationBarItem(
+          icon: Icon(Icons.person, color: Colors.grey),
+          activeIcon: Icon(Icons.person, color: Colors.black),
+          label: '',
+        ),
       ],
     );
   }

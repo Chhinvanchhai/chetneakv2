@@ -4,7 +4,9 @@ import 'package:chetneak_v2/themes/app_theme.dart';
 import 'models/category.dart';
 
 class CategoryListView extends StatefulWidget {
-  const CategoryListView({required this.callBack, Key? key}) : super(key: key);
+  const CategoryListView(
+      {required this.callBack, Key? key, required int height})
+      : super(key: key);
 
   final Function() callBack;
 
@@ -48,12 +50,12 @@ class _CategoryListViewState extends State<CategoryListView>
             } else {
               return ListView.builder(
                 padding: const EdgeInsets.only(right: 16, left: 16),
-                itemCount: Category.categoryList.length,
+                itemCount: CategoryModel.categoryList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  final int count = Category.categoryList.length > 10
+                  final int count = CategoryModel.categoryList.length > 10
                       ? 10
-                      : Category.categoryList.length;
+                      : CategoryModel.categoryList.length;
                   final Animation<double> animation =
                       Tween<double>(begin: 0.0, end: 1.0).animate(
                           CurvedAnimation(
@@ -63,7 +65,7 @@ class _CategoryListViewState extends State<CategoryListView>
                   animationController.forward();
 
                   return CategoryView(
-                    category: Category.categoryList[index],
+                    category: CategoryModel.categoryList[index],
                     animation: animation,
                     animationController: animationController,
                     callback: () {
@@ -90,7 +92,7 @@ class CategoryView extends StatelessWidget {
       : super(key: key);
 
   final VoidCallback callback;
-  final Category category;
+  final CategoryModel category;
   final AnimationController animationController;
   final Animation<double> animation;
 

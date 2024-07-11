@@ -94,7 +94,7 @@ class _ListChatScreenState extends State<ListChatScreen> {
                       return Text('Loading...');
                     }
 
-                    if (!snapshot.hasData) {
+                    if (!snapshot.hasData || snapshot.data?.data() == null) {
                       return Text('Unknown');
                     }
 
